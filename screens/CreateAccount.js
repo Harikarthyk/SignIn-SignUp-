@@ -7,14 +7,13 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {loading, loadUser, loginUser} from '../action';
+import {loading, registerNewUser} from '../action';
 
 export const createAccount = ({
   navigation,
   state,
   loading,
-  loginUser,
-  loadUser,
+  registerNewUser,
 }) => {
   useEffect(() => {
     loadUser();
@@ -28,7 +27,7 @@ export const createAccount = ({
   const loginHandler = () => {
     loading();
     // setTimeout(() => {
-    loginUser(input);
+    registerNewUser(input);
     // }, 2000);
     // console.log(state);
   };
@@ -99,8 +98,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   loading: () => dispatch(loading()),
-  loginUser: input => dispatch(loginUser(input)),
-  loadUser: () => dispatch(loadUser()),
+  registerNewUser: input => dispatch(registerNewUser(input)),
 });
 const styles = StyleSheet.create({
   container: {

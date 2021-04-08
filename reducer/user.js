@@ -71,29 +71,29 @@ const user = (state = initialState, action) => {
 
     case 'REGISTER_NEW_USER': {
       //API Call and get a response
-      // createAccount(state.input)
-      //   .then(response => {
-      //     console.log(response);
-      //     const storeData = async () => {
-      //       try {
-      //         const jsonValue = JSON.stringify(response.user);
-      //         await AsyncStorage.setItem('@storage_Key', jsonValue);
-      //         return {
-      //           ...state,
-      //           user: null,
-      //           loading: false,
-      //           error: null,
-      //           message: response.message,
-      //         };
-      //       } catch (e) {
-      //         return {...state, error: e, loading: false};
-      //       }
-      //     };
-      //     return storeData();
-      //   })
-      //   .catch(error => {
-      //     return {...state, error: error, loading: false};
-      //   });
+      createAccount(state.input)
+        .then(response => {
+          console.log(response);
+          const storeData = async () => {
+            try {
+              const jsonValue = JSON.stringify(response.user);
+              await AsyncStorage.setItem('@storage_Key', jsonValue);
+              return {
+                ...state,
+                user: null,
+                loading: false,
+                error: null,
+                message: response.message,
+              };
+            } catch (e) {
+              return {...state, error: e, loading: false};
+            }
+          };
+          return storeData();
+        })
+        .catch(error => {
+          return {...state, error: error, loading: false};
+        });
     }
 
     case 'LOGOUT': {
