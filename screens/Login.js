@@ -28,7 +28,7 @@ export const Login = ({navigation, state, loading, loginUser, loadUser}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>HeyAPP</Text>
+      <Text style={styles.logo}>AGE Store</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}

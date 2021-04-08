@@ -15,9 +15,6 @@ export const createAccount = ({
   loading,
   registerNewUser,
 }) => {
-  useEffect(() => {
-    loadUser();
-  }, []);
   const [input, setInput] = useState({
     email: '',
     password: '',
@@ -34,7 +31,7 @@ export const createAccount = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>HeyAPP</Text>
+      <Text style={styles.logo}>AGE Store</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
