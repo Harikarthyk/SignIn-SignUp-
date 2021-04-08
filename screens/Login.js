@@ -80,15 +80,15 @@ export const Login = ({navigation, state, loading, loginUser, loadUser}) => {
       <View
         style={{
           flexDirection: 'row',
-          width: '100%',
+          width: '90%',
           justifyContent: 'space-around',
         }}>
         <TouchableOpacity
-          style={[styles.loginBtn, {width: '45%', backgroundColor: '#D51010'}]}>
+          style={[styles.loginBtn, {width: '40%', backgroundColor: '#D51010'}]}>
           <Text style={[styles.loginText, {fontWeight: 'bold'}]}>Google</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.loginBtn, {width: '45%', backgroundColor: '#007ACC'}]}>
+          style={[styles.loginBtn, {width: '40%', backgroundColor: '#007ACC'}]}>
           <Text style={[styles.loginText, {fontWeight: 'bold'}]}>Facebook</Text>
         </TouchableOpacity>
       </View>

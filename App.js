@@ -8,16 +8,18 @@ import CreateAccount from './screens/CreateAccount';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {loginUser, loading, loadUser} from './action';
+import {loading, loadUser} from './action';
 
 const Stack = createStackNavigator();
 const App = ({state, loadUser}) => {
   useEffect(() => {
+    console.log('Line 16 APp.js ----- ', state);
+    loading();
     loadUser();
   }, []);
   return (
     <NavigationContainer>
-      {console.log('Line 20 ---', state.user)}
+      {console.log('Line 20 --- App.js -- ', state)}
       {state.loading ? (
         <Stack.Navigator>
           <Stack.Screen name="Splash" component={Splash} />
@@ -27,7 +29,9 @@ const App = ({state, loadUser}) => {
           <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
       ) : (
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator
+          screenOptions={{headerShown: false}}
+          initialRouteName="Login">
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="NewUser" component={CreateAccount} />
         </Stack.Navigator>

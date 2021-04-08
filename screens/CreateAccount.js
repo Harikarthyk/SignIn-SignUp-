@@ -9,13 +9,20 @@ import {
 } from 'react-native';
 import {loading, loadUser, loginUser} from '../action';
 
-export const createAccount = ({state, loading, loginUser, loadUser}) => {
+export const createAccount = ({
+  navigation,
+  state,
+  loading,
+  loginUser,
+  loadUser,
+}) => {
   useEffect(() => {
     loadUser();
   }, []);
   const [input, setInput] = useState({
-    email: 'john@gmail.com',
-    password: 'password',
+    email: '',
+    password: '',
+    nickName: '',
   });
 
   const loginHandler = () => {
@@ -29,7 +36,15 @@ export const createAccount = ({state, loading, loginUser, loadUser}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>HeyAPP</Text>
-      <Text style={styles.forgot}>Create new Account </Text>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.inputText}
+          placeholder="Enter Nick Name ... "
+          value={input.nickName}
+          placeholderTextColor="#003f5c"
+          onChangeText={text => setInput({...input, nickName: text})}
+        />
+      </View>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
@@ -49,9 +64,6 @@ export const createAccount = ({state, loading, loginUser, loadUser}) => {
           onChangeText={text => setInput({...input, password: text})}
         />
       </View>
-      <TouchableOpacity>
-        <Text style={styles.forgot}>Forgot Password?</Text>
-      </TouchableOpacity>
       {state.user.loading ? (
         <Text
           style={{
@@ -64,35 +76,20 @@ export const createAccount = ({state, loading, loginUser, loadUser}) => {
       ) : (
         <TouchableOpacity
           onPress={() => loginHandler()}
-          style={styles.loginBtn}>
-          <Text style={styles.loginText}>LOGIN</Text>
+          style={[styles.loginBtn, {elevation: 1}]}>
+          <Text style={styles.loginText}>CREATE YOUR ACCOUNT</Text>
         </TouchableOpacity>
       )}
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Text
           style={{
             fontWeight: 'bold',
             color: '#fb5b5a',
             textDecorationLine: 'underline',
           }}>
-          Signup
+          Already a user ?
         </Text>
       </TouchableOpacity>
-      <View
-        style={{
-          flexDirection: 'row',
-          width: '100%',
-          justifyContent: 'space-around',
-        }}>
-        <TouchableOpacity
-          style={[styles.loginBtn, {width: '45%', backgroundColor: '#D51010'}]}>
-          <Text style={[styles.loginText, {fontWeight: 'bold'}]}>Google</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.loginBtn, {width: '45%', backgroundColor: '#007ACC'}]}>
-          <Text style={[styles.loginText, {fontWeight: 'bold'}]}>Facebook</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };

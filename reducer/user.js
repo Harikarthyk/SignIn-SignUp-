@@ -13,34 +13,31 @@ const user = (state = initialState, action) => {
     case 'LOADING': {
       return {...state, loading: true};
     }
+
     case 'LOAD_USER': {
       const getUser = async () => {
         try {
           const jsonValue = await AsyncStorage.getItem('@storage_Key');
           if (jsonValue != null) {
             let parse = JSON.parse(jsonValue);
-            console.log('Line 22 ------ pre State', state);
-            let newState = {
+            return {
               ...state,
-              user: parse.user,
+              user: parse,
               loading: false,
-              error: null,
-              message: '',
             };
-            console.log(newState, 'Line 28 user.js');
-            return newState;
-          } else return {...state, error: response.message, loading: false};
+          } else return {...state, loading: false};
         } catch (e) {
-          return {...state, error: response.message, loading: false};
+          return {...state, error: e, loading: false};
         }
       };
-      return getUser();
+      let states = getUser();
+      console.log(states);
+      return states;
     }
+
     case 'LOGIN_USER': {
       login(action.playload.input)
         .then(response => {
-          // console.log(response);
-
           const storeData = async () => {
             try {
               const jsonValue = JSON.stringify(response.user);
@@ -98,6 +95,7 @@ const user = (state = initialState, action) => {
       //     return {...state, error: error, loading: false};
       //   });
     }
+
     case 'LOGOUT': {
       // console.log('Logout Invoked .. 000');
       const storeData = async () => {
