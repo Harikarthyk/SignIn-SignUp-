@@ -13,7 +13,6 @@ import {loading, loadUser} from './action';
 const Stack = createStackNavigator();
 const App = ({state, loadUser}) => {
   useEffect(() => {
-    console.log('Line 16 APp.js ----- ', state);
     loading();
     loadUser();
   }, []);
